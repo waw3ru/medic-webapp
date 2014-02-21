@@ -73,10 +73,12 @@ kanso push http://dev.medicmobile.org:5984/market/_design/market/_rewrite/upload
 ## Configure
 
 Dashboard is required to load kujua-lite. To install Dashboard
-1) git clone https://github.com/garden20/dashboard
-2) cd dashboard
-3) kanso push $COUCH_URL
-4) change the couch db configuration secure_rewrites to false.
+```
+git clone https://github.com/garden20/dashboard
+cd dashboard
+kanso push $COUCH_URL
+```
+Then change the couch db configuration secure_rewrites to false.
 
 
 See [Kujua Sentinel](https://github.com/medic/kujua-sentinel) for more information.
