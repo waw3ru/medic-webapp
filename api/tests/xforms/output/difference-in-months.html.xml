@@ -1,0 +1,8 @@
+<form autocomplete="off" novalidate="novalidate" class="or clearfix pages" dir="ltr" id="difference-in-months">
+<!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSL stylesheet created by Enketo LLC.--><section class="form-logo"> </section><h3 dir="auto" id="form-title">Test: difference-in-months</h3>
+  
+  
+    <label class="question non-select "><span lang="" class="question-label active">Date of Birth</span><input type="date" name="/difference-in-months/patient_dob" data-type-xml="date"/></label>
+    <label class="question note non-select "><span lang="" class="question-label active"><p><em>Date of Birth:</em> <span class="or-output" data-value=" /difference-in-months/patient_dob "> </span></p><span class="or-output" data-value=" /difference-in-months/patient_age_in_months "> </span> months old<br><span class="or-output" data-value=" /difference-in-months/patient_age_in_years "> </span> years old</span><input type="text" name="/difference-in-months/note" data-type-xml="string" readonly="readonly"/></label>
+  
+<fieldset id="or-calculated-items" style="display:none;"><label class="calculation non-select "><input type="hidden" name="/difference-in-months/patient_age_in_years" data-calculate="difference-in-months( /difference-in-months/patient_dob , today()) div 12" data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/difference-in-months/patient_age_in_months" data-calculate="difference-in-months( /difference-in-months/patient_dob , today())" data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/difference-in-months/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string"/></label></fieldset></form>

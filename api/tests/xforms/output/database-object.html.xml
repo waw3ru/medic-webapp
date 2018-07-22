@@ -1,0 +1,8 @@
+<form autocomplete="off" novalidate="novalidate" class="or clearfix" dir="ltr" id="clinic">
+<!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSL stylesheet created by Enketo LLC.--><section class="form-logo"> </section><h3 dir="auto" id="form-title">{{'clinic.new' | translate}}</h3>
+	
+	
+		<label class="question non-select or-appearance-dbobject "><span lang="" class="question-label active">{{'clinic.loc' | translate}}</span><input type="error" name="/clinic/loc" data-type-xml="place"/></label>
+		<label class="question non-select or-appearance-dbobject or-appearance-allow-new "><span lang="" class="question-label active">{{'clinic.contact' | translate}}</span><input type="error" name="/clinic/contact" data-type-xml="person"/></label>
+	
+</form>

@@ -1,0 +1,59 @@
+<model><instance>
+        <outreach xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" delimiter="#" id="outreach" prefix="J1!outreach!" version="6/9/2017">
+          <country/>
+          <country_other/>
+          <site/>
+          <site_other/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </outreach>
+      </instance><instance id="sites">
+        <root xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+          <item>
+            <itextId>static_instance-sites-0</itextId>
+            <country>kenya</country>
+            <name>taveta</name>
+          </item>
+          <item>
+            <itextId>static_instance-sites-1</itextId>
+            <country>kenya</country>
+            <name>sio_port</name>
+          </item>
+          <item>
+            <itextId>static_instance-sites-2</itextId>
+            <country>kenya</country>
+            <name>other</name>
+          </item>
+          <item>
+            <itextId>static_instance-sites-3</itextId>
+            <country>uganda</country>
+            <name>busia</name>
+          </item>
+          <item>
+            <itextId>static_instance-sites-4</itextId>
+            <country>uganda</country>
+            <name>malaba</name>
+          </item>
+          <item>
+            <itextId>static_instance-sites-5</itextId>
+            <country>uganda</country>
+            <name>other</name>
+          </item>
+        </root>
+      </instance><instance id="countries">
+        <root xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+          <item>
+            <itextId>static_instance-countries-0</itextId>
+            <name>kenya</name>
+          </item>
+          <item>
+            <itextId>static_instance-countries-1</itextId>
+            <name>uganda</name>
+          </item>
+          <item>
+            <itextId>static_instance-countries-2</itextId>
+            <name>other</name>
+          </item>
+        </root>
+      </instance></model>

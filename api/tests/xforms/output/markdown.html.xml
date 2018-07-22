@@ -1,0 +1,7 @@
+<form autocomplete="off" novalidate="novalidate" class="or clearfix" dir="ltr" id="MARKDOWN">
+<!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSL stylesheet created by Enketo LLC.--><section class="form-logo"> </section><h3 dir="auto" id="form-title">Markdown demo</h3>
+  
+  
+    <label class="question note non-select "><span lang="" class="question-label active"><p><strong>The estimated delivery date is</strong></p>  &lt;table&gt; &lt;thead&gt; &lt;tr&gt; &lt;td&gt;col1&lt;/td&gt; &lt;td&gt;col2&lt;/td&gt; &lt;/tr&gt; &lt;/thead&gt; &lt;tdata&gt; &lt;tr&gt; &lt;td&gt;val1.1&lt;/td&gt; &lt;td&gt;val1.2&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;val2.1&lt;/td&gt; &lt;td&gt;val2.2&lt;/td&gt; &lt;/tr&gt; &lt;/tdata&gt; &lt;/table&gt;<br><strong>Remind woman to</strong><ol><li>Take Iron Folate daily</li><li>Attend regular ANC visits</li></ol><br><p>...</p><strong>b</strong><br><strong>b</strong><br><strong>Bold stars</strong><br><strong>Bold underscores</strong><br><strong>a bold sentence with an * in it</strong><br><strong>a bold sentence with an _ in it</strong><br><em>i</em><br><em>i</em><br><em>Italic stars</em><br><em>Italic underscores</em><br><em>a bold sentence with an </em> in it_<br><p><em>a bold sentence with an </em> in it*</p></span><input type="text" name="/pregnancy/display_edd" data-type-xml="string" readonly="readonly"/></label>
+  
+</form>

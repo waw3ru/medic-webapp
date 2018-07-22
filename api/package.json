@@ -24,6 +24,7 @@
     "bulk-docs-utils": "file:../shared-libs/bulk-docs-utils",
     "compression": "^1.7.2",
     "couchdb-audit": "^1.1.1",
+    "enketo-xslt": "^1.19.0",
     "express": "^4.16.3",
     "fast-csv": "^2.4.1",
     "google-libphonenumber": "^3.1.8",

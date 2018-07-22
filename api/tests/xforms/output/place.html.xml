@@ -1,0 +1,13 @@
+<form autocomplete="off" novalidate="novalidate" class="or clearfix pages" dir="ltr" id="clinic">
+<!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSL stylesheet created by Enketo LLC.--><section class="form-logo"> </section><h3 dir="auto" id="form-title">New Place</h3>
+  
+  
+
+    <section class="or-group-data or-appearance-field-list " name="/data/clinic"><label class="question non-select "><span lang="" class="question-label active">{{'clinic.name' | translate}}</span><span class="required">*</span><input type="text" name="/data/clinic/name" data-required="true()" data-type-xml="string"/><span class="or-required-msg active" lang="" data-i18n="constraint.required">This field is required</span></label><label class="question non-select "><span lang="" class="question-label active">{{'clinic.external_id' | translate}}</span><input type="text" name="/data/clinic/external_id" data-type-xml="string"/></label><label class="question non-select or-appearance-db-object "><span lang="" class="question-label active">{{'clinic.parent' | translate}}</span><input type="error" name="/data/clinic/parent" data-type-xml="district_hospital"/></label><label class="question non-select or-appearance-db-object "><span lang="" class="question-label active">{{'clinic.contact' | translate}}</span><span class="required">*</span><input type="error" name="/data/clinic/contact" data-required="true()" data-type-xml="person"/><span class="or-required-msg active" lang="" data-i18n="constraint.required">This field is required</span></label>
+            </section><!--end of group -->
+
+    <section class="or-group or-branch pre-init or-appearance-field-list " name="/data/new_person" data-relevant="/data/clinic/contact = 'NEW'"><h4><span lang="" class="question-label active">{{'person.new' || translate}}</span></h4><label class="question non-select "><span lang="" class="question-label active">{{'person.name' | translate}}</span><span class="required">*</span><input type="text" name="/data/new_person/name" data-required="true()" data-type-xml="string"/><span class="or-required-msg active" lang="" data-i18n="constraint.required">This field is required</span></label><label class="question non-select "><span lang="" class="question-label active">{{'person.phone' | translate}}</span><span class="required">*</span><input type="error" name="/data/new_person/phone" data-required="true()" data-type-xml="phone"/><span class="or-required-msg active" lang="" data-i18n="constraint.required">This field is required</span></label>
+            </section><!--end of group -->
+
+  
+</form>

@@ -1,0 +1,17 @@
+<model><instance>
+        <data xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" id="clinic" version="1">
+          <clinic>
+            <name/>
+            <external_id/>
+            <parent/>
+            <contact/>
+          </clinic>
+          <meta>
+            <instanceID/>
+          </meta>
+          <new_person>
+            <name/>
+            <phone/>
+          </new_person>
+        </data>
+      </instance></model>

@@ -82,6 +82,7 @@ angular.module('inboxServices').service('Enketo',
         XSLT.transform('openrosa2xmlmodel.xsl', xml)
       ])
       .then(function(results) {
+        console.log('~~~~~~~~~~~~~~~ HTML', results[0]);
         var $html = $(results[0]);
         var model = results[1];
         $html.find('[data-i18n]').each(function() {
