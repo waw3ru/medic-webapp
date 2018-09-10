@@ -1,0 +1,11 @@
+version: '3.3'
+
+services:
+  webapp:
+    environments:
+      - COUCH_URL=http://admin:admin-1234@localhost:5984/medic
+      - COUCH_NODE_NAME=couchdb@127.0.0.1
+  nginx:
+    image: 'nginx'
+  couchdb:
+    image: 'couchdb'
