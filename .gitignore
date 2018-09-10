@@ -21,3 +21,5 @@ tests/results
 *.sublime-project
 *.sublime-workspace
 /.env
+nginx/logs
+couchdb/logs
