@@ -23,3 +23,6 @@ tests/results
 /.env
 nginx/logs
 couchdb/logs
+
+nginx/ssl-keys/**/*
+!nginx/ssl-keys/.gitkeep
