@@ -1,6 +1,19 @@
 version: '3.3'
 
 services:
+  webapp:
+    build: .
+    container_name: medic-webapp
+    ports:
+      - "5989:5988"
+    networks:
+      - medic-net
+    depends_on:
+      - couchdb
+      # - nginx
+    volumes:
+      - .:/srv/
+
   nginx:
     container_name: 'nginx'
     image: 'nginx'
@@ -11,11 +24,12 @@ services:
       - ./nginx/logs/:/var/log/nginx
       - ./nginx/ssl-keys:/etc/nginx/ssl
       # - ./nginx/sites-available:/etc/nginx/sites-enabled
+      # - /etc/nginx/:/etc/nginx/
     depends_on:
       - couchdb
 
   couchdb:
-    container_name: 'couchdb'
+    container_name: 'couchdb-image'
     image: 'couchdb:2.2'
     networks:
       - medic-net
@@ -26,7 +40,7 @@ services:
     environment:
       - COUCHDB_USER=admin
       - COUCHDB_PASSWORD=pass
-      - NODENAME=127.0.0.1
+      - NODENAME=couchdb-image
     volumes:
       - couchdb-data:/opt/couchdb/data
       - ./couchdb/local.ini:/opt/couchdb/etc/local.ini
