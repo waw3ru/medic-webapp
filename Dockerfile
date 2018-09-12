@@ -9,18 +9,18 @@ COPY . /srv/
 
 WORKDIR /srv/
 
-RUN yarn install
+RUN npm install
 
 WORKDIR /srv/api
 
-RUN yarn install
+RUN npm install
 
 WORKDIR /srv/sentinel
 
-RUN yarn install
+RUN npm install
 
 WORKDIR /srv/
 
-RUN grunt dev-webapp
+# RUN grunt dev-webapp-no-npm
 
 RUN yarn start
