@@ -23,6 +23,6 @@ RUN npm install
 
 WORKDIR /srv/
 
-# RUN grunt dev-webapp-no-npm
+RUN grunt dev-webapp-no-npm
 
 RUN yarn start
