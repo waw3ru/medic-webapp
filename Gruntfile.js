@@ -639,7 +639,7 @@ module.exports = function(grunt) {
   grunt.registerTask('dev-webapp-no-npm', 'Build and deploy the webapp for dev, without reinstalling dependencies.', [
     'build',
     'deploy',
-    'watch'
+    // 'watch' // modified for docker purposes
   ]);
 
   grunt.registerTask('dev-api', 'Run api and watch for file changes', [
