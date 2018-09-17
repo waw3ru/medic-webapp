@@ -211,6 +211,9 @@ module.exports = function(grunt) {
       sentinelDev: {
         cmd: 'TZ=UTC ./node_modules/.bin/nodemon --watch sentinel sentinel/server.js'
       },
+      'api-sentinel-deploy': {
+        cmd: 'TZ=UTC ./node_modules/.bin/pm2 start pm2.config.js --no-daemon -a'
+      },
       blankLinkCheck: {
         cmd: `echo "Checking for dangerous _blank links..." &&
                ! (git grep -E  'target\\\\?="_blank"' -- templates/ translations/ static/ |
@@ -355,6 +358,12 @@ module.exports = function(grunt) {
         options: {
           title: 'Medic Mobile',
           message: 'Deployed successfully'
+        }
+      },
+      'deployed-backend': {
+        options: {
+          title: 'Medic Mobile Backend',
+          message: 'Deployed successfully api and sentinel. Check pm2 process'
         }
       }
     },
@@ -551,6 +560,11 @@ module.exports = function(grunt) {
     'exec:deploy',
     'notify:deployed'
   ]);
+
+  grunt.registerTask('deploy:backend', 'Deploying API and SENTINEL', [
+    'exec:api-sentinel-deploy',
+    'notify:deployed-backend'
+  ])
 
   // Test tasks
   grunt.registerTask('e2e', 'Deploy app for testing and run e2e tests', [

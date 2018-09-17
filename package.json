@@ -9,6 +9,7 @@
   },
   "scripts": {
     "start": "nf start",
+    "production": "grunt deploy --force && grunt deploy:backend",
     "webdriver": "webdriver-manager update && webdriver-manager start"
   },
   "dependencies": {
@@ -28,6 +29,8 @@
     "bootstrap-daterangepicker": "^2.1.24",
     "bootstrap-tour": "^0.12.0",
     "bulk-docs-utils": "file:shared-libs/bulk-docs-utils",
+    "concurrently": "^4.0.1",
+    "dotenv": "^6.0.0",
     "enketo-core": "^4.41.2",
     "font-awesome": "^4.7.0",
     "google-libphonenumber": "^3.1.8",
@@ -41,6 +44,7 @@
     "object-path": "^0.11.4",
     "openrosa-xpath-evaluator": "^1.4.2",
     "partial-json-parser": "1.0.2",
+    "pm2": "^3.1.2",
     "pojo2xml": "^1.4.0",
     "pouchdb-browser": "^6.4.3",
     "properties": "^1.2.1",

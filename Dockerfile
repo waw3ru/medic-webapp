@@ -1,28 +1,16 @@
-FROM node:8.11.0
+FROM node:10.9.0
 
-ENV COUCH_URL=http://admin:pass@couchdb-image:5985/medic
+ENV COUCH_URL=http://admin:pass@couchdb-image:5984/medic
 ENV COUCH_NODE_NAME=couchdb@couchdb-image
 
 RUN npm i -g npm@latest
 
-RUN npm i -g grunt-cli kanso
+RUN npm i -g grunt-cli kanso pm2
 
 COPY . /srv/
 
 WORKDIR /srv/
 
-RUN npm install
+# RUN grunt dev-webapp-no-npm --force
 
-WORKDIR /srv/api
-
-RUN npm install
-
-WORKDIR /srv/sentinel
-
-RUN npm install
-
-WORKDIR /srv/
-
-RUN grunt dev-webapp-no-npm
-
-RUN yarn start
+CMD ["npm", "run", "production"]
