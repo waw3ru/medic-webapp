@@ -10,27 +10,32 @@ services:
       - medic-net
     depends_on:
       - couchdb
-      # - nginx
+      - nginx
     volumes:
       - .:/srv/
+      - ./api/logs/:/srv/api/logs/
+      - ./sentinel/logs:/srv/sentinel/logs/
+    environment:
+      - COUCH_URL=http://admin:pass@couchdb-image:5984/medic
+      - COUCH_NODE_NAME=couchdb@couchdb-image
 
   nginx:
-    container_name: 'nginx'
-    image: 'nginx'
+    container_name: nginx
+    image: nginx:alpine
     ports:
-      - "81:80"
+      - "8081:80"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/logs/:/var/log/nginx
       - ./nginx/ssl-keys:/etc/nginx/ssl
-      - ./api/logs/:/srv/api/logs/
-      - ./sentinel/logs:/srv/sentinel/logs/
-      # - ./nginx/sites-available:/etc/nginx/sites-enabled
-      # - /etc/nginx/:/etc/nginx/
+      - ./nginx/sites-available:/etc/nginx/sites-enabled
     depends_on:
       - couchdb
+    networks:
+      - medic-net
 
   couchdb:
+    hostname: localhost
     container_name: couchdb-image
     image: 'couchdb:2.2'
     networks:
@@ -38,7 +43,7 @@ services:
     ports:
       - "5985:5984"
       # - "4370:4369"
-      # - "9101:9100"
+      # - "9101:9100"ping
     environment:
       - COUCHDB_USER=admin
       - COUCHDB_PASSWORD=pass
@@ -52,4 +57,13 @@ volumes:
   couchdb-data:
 
 networks:
+  # medic-couchdb-net:
+  #   driver: host
+  #   labels:
+  #     com.medic-net.description: "couchdb"
+  #     com.medic-net.organization: "Livinggoods"
+
   medic-net:
+    labels:
+      com.medic-net.description: "docker containers compose internal network"
+      com.medic-net.organization: "Livinggoods"

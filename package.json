@@ -9,7 +9,8 @@
   },
   "scripts": {
     "start": "nf start",
-    "production": "grunt deploy --force && grunt deploy:backend",
+    "production": "NODE_ENV=production grunt deploy --force && grunt deploy:backend",
+    "dev": "NODE_ENV=development grunt deploy --force && grunt deploy:backend",
     "webdriver": "webdriver-manager update && webdriver-manager start"
   },
   "dependencies": {
