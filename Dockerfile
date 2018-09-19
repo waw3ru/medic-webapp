@@ -13,4 +13,4 @@ WORKDIR /srv/
 
 # RUN grunt dev-webapp-no-npm --force
 
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "production"]
