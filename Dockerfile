@@ -11,6 +11,8 @@ COPY . /srv/
 
 WORKDIR /srv/
 
-# RUN grunt dev-webapp-no-npm --force
+RUN npm i
+
+# RUN grunt deploy
 
 CMD ["npm", "run", "production"]

@@ -27,3 +27,4 @@ api/logs
 sentinel/logs
 nginx/ssl-keys/**/*
 !nginx/ssl-keys/.gitkeep
+couchdb/.env

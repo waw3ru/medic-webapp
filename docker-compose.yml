@@ -15,9 +15,8 @@ services:
       - .:/srv/
       - ./api/logs/:/srv/api/logs/
       - ./sentinel/logs:/srv/sentinel/logs/
-    environment:
-      - COUCH_URL=http://admin:pass@couchdb-image:5984/medic
-      - COUCH_NODE_NAME=couchdb@couchdb-image
+    env_file:
+      - .env
 
   nginx:
     container_name: nginx
@@ -35,7 +34,6 @@ services:
       - medic-net
 
   couchdb:
-    hostname: localhost
     container_name: couchdb-image
     image: 'couchdb:2.2'
     networks:
@@ -44,10 +42,8 @@ services:
       - "5985:5984"
       - "4370:4369"
       - "9101:9100"
-    environment:
-      - COUCHDB_USER=admin
-      - COUCHDB_PASSWORD=pass
-      - NODENAME=couchdb-image
+    env_file:
+      - ./couchdb/.env
     volumes:
       - couchdb-data:/opt/couchdb/data
       - ./couchdb/local.ini:/opt/couchdb/etc/local.ini
@@ -57,12 +53,6 @@ volumes:
   couchdb-data:
 
 networks:
-  # medic-couchdb-net:
-  #   driver: host
-  #   labels:
-  #     com.medic-net.description: "couchdb"
-  #     com.medic-net.organization: "Livinggoods"
-
   medic-net:
     labels:
       com.medic-net.description: "docker containers compose internal network"

@@ -6,12 +6,6 @@ module.exports = {
         {
             name: 'mm:api',
             script: './api/server.js',
-            env: {
-                NODE_ENV: process.env.NODE_ENV,
-                UNIT_TEST_ENV: '',
-                COUCH_URL: process.env.COUCH_URL,
-                COUCH_NODE_NAME: process.env.COUCH_NODE_NAME
-            },
             watch: false,
             exec_interpreter: 'node',
             wait_ready: true,
@@ -27,12 +21,6 @@ module.exports = {
         {
             name: 'mm:sentinel',
             script: './sentinel/server.js',
-            env: {
-                NODE_ENV: process.env.NODE_ENV,
-                UNIT_TEST_ENV: '',
-                COUCH_URL: process.env.COUCH_URL,
-                COUCH_NODE_NAME: process.env.COUCH_NODE_NAME
-            },
             watch: false,
             exec_interpreter: 'node',
             wait_ready: true,
