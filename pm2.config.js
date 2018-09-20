@@ -7,6 +7,7 @@ module.exports = {
             name: 'mm:api',
             script: './api/server.js',
             watch: false,
+            exec_mode : "cluster",
             exec_interpreter: 'node',
             wait_ready: true,
             max_restarts: 4,
@@ -21,6 +22,7 @@ module.exports = {
         {
             name: 'mm:sentinel',
             script: './sentinel/server.js',
+            exec_mode : "cluster",
             watch: false,
             exec_interpreter: 'node',
             wait_ready: true,
