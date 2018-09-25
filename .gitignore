@@ -28,3 +28,6 @@ sentinel/logs
 nginx/ssl-keys/**/*
 !nginx/ssl-keys/.gitkeep
 couchdb/.env
+environments/**/*
+!environments/.gitkeep
+!environments/*.txt

@@ -16,7 +16,7 @@ services:
       - ./api/logs/:/srv/api/logs/
       - ./sentinel/logs:/srv/sentinel/logs/
     env_file:
-      - .env
+      - ./environments/.medic
 
   nginx:
     container_name: nginx
@@ -43,7 +43,7 @@ services:
       - "4370:4369"
       - "9101:9100"
     env_file:
-      - ./couchdb/.env
+      - ./environments/.couch
     volumes:
       - couchdb-data:/opt/couchdb/data
       - ./couchdb/local.ini:/opt/couchdb/etc/local.ini
