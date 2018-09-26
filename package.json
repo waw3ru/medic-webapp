@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "nf start",
-    "production": "grunt deploy && grunt deploy:backend",
+    "production": "grunt deploy && TZ=UTC ./node_modules/.bin/concurrently \"node ./api/server.js\" \"node ./sentinel/server.js\"",
     "webdriver": "webdriver-manager update && webdriver-manager start"
   },
   "dependencies": {
