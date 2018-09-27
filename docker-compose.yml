@@ -11,10 +11,6 @@ services:
     depends_on:
       - couchdb
       - nginx
-    volumes:
-      - .:/srv/
-      - ./api/logs/:/srv/api/logs/
-      - ./sentinel/logs:/srv/sentinel/logs/
     env_file:
       - ./environments/.medic
 
