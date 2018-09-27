@@ -12,12 +12,4 @@ WORKDIR /srv/
 
 RUN npm i
 
-WORKDIR /srv/api/
-
-RUN npm i
-
-WORKDIR /srv/sentinel/
-
-RUN npm i
-
 CMD ["npm", "run", "production"]

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "checking system"
+printf "Checking System...\n"
 
 if which docker > /dev/null
     then
@@ -34,9 +34,6 @@ else
     exit 0
 fi
 
-medic_env="./environments/.medic"
-couch_env="./environments/.couch"
-
 if [ ! -f ./environments/.medic ]; then
    echo "File ./environments/.medic does not exist. Please create one."
    exit 1
@@ -47,24 +44,33 @@ if [ ! -f ./environments/.couch ]; then
    exit 1
 fi
 
-echo "DONE!"
+# printf "\nRunning removing pre-exising docker-compose services...\n"
+# docker-compose down -v
 
-printf "\n"
-
-docker-compose down -v
-
-printf "\n"
-
-echo "exporting environment variables"
-
+printf "\nExporting environment variables...\n"
 export COUCH_USER=$1
 export COUCH_PASS=$2
 export COUCH_NODE_NAME=couchdb@$3
 export NODE_ENV=$4
-
 export COUCH_URL=http://$COUCH_USER:$COUCH_PASS@127.0.0.1:5985/medic
 
-printf "\n"
+# printf "\nStarting docker-compose couchdb service...\n"
+# docker-compose up -d --build couchdb
 
-echo "starting docker-compose couchdb service"
-docker-compose up -d --build couchdb
+# printf "\nSetting up couchdb\n"
+# source ./couchdb/installation.sh $COUCH_USER $COUCH_PASS $3
+
+printf "\nInstalling all relevant dependencies...\n"
+npm i -g grunt-cli kanso && npm install
+
+printf "\nBuilding medic...\n"
+grunt build
+
+printf "\nDeploying medic...\n"
+grunt deploy
+
+printf "\nBuilding medic docker image...\n"
+docker-compose build --no-cache webapp
+
+printf "\nRunning medic container...\n"
+docker-compose up -d webapp
