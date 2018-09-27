@@ -44,33 +44,44 @@ if [ ! -f ./environments/.couch ]; then
    exit 1
 fi
 
-# printf "\nRunning removing pre-exising docker-compose services...\n"
-# docker-compose down -v
+if [ ! -f .docker-setup-done ];
+    then
+        printf "\nRunning removing pre-exising docker-compose services...\n"
+        docker-compose down -v
 
-printf "\nExporting environment variables...\n"
-export COUCH_USER=$1
-export COUCH_PASS=$2
-export COUCH_NODE_NAME=couchdb@$3
-export NODE_ENV=$4
-export COUCH_URL=http://$COUCH_USER:$COUCH_PASS@127.0.0.1:5985/medic
+        printf "\nExporting environment variables...\n"
+        export COUCH_USER=$1
+        export COUCH_PASS=$2
+        export COUCH_NODE_NAME=couchdb@$3
+        export NODE_ENV=$4
+        export COUCH_URL=http://$COUCH_USER:$COUCH_PASS@127.0.0.1:5985/medic
 
-# printf "\nStarting docker-compose couchdb service...\n"
-# docker-compose up -d --build couchdb
+        printf "\nStarting docker-compose couchdb service...\n"
+        docker-compose up -d --build couchdb
 
-# printf "\nSetting up couchdb\n"
-# source ./couchdb/installation.sh $COUCH_USER $COUCH_PASS $3
+        printf "\nWAITING FOR COUCHDB TO WARM UP...\n"
+        sleep 15
 
-printf "\nInstalling all relevant dependencies...\n"
-npm i -g grunt-cli kanso && npm install
+        printf "\nSetting up couchdb\n"
+        source ./couchdb/installation.sh $COUCH_USER $COUCH_PASS $3
 
-printf "\nBuilding medic...\n"
-grunt build
+        printf "\nInstalling all relevant dependencies...\n"
+        npm i -g grunt-cli kanso && npm install
 
-printf "\nDeploying medic...\n"
-grunt deploy
+        printf "\nBuilding medic...\n"
+        grunt build
 
-printf "\nBuilding medic docker image...\n"
-docker-compose build --no-cache webapp
+        printf "\nDeploying medic...\n"
+        grunt deploy
 
-printf "\nRunning medic container...\n"
-docker-compose up -d webapp
+        printf "\nBuilding medic docker image...\n"
+        docker-compose build --no-cache webapp
+
+        printf "\nRunning medic container...\n"
+        docker-compose up -d webapp
+
+        printf "\nDONE!"
+        touch .docker-setup-done
+    else
+        echo "!!ALREADY SETUP MEDIC...!!"
+    fi

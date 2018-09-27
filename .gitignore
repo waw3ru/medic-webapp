@@ -31,3 +31,4 @@ couchdb/.env
 environments/**/*
 !environments/.gitkeep
 !environments/*.txt
+.docker-setup-done
