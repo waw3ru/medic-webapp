@@ -14,24 +14,24 @@ services:
       - ./sentinel/logs:/srv/sentinel/logs/
     depends_on:
       - couchdb
-      - nginx
+      # - nginx
     env_file:
       - ./environments/.medic
 
-  nginx:
-    container_name: nginx
-    image: nginx:alpine
-    ports:
-      - "81:80"
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx/logs/:/var/log/nginx
-      - ./nginx/ssl-keys:/etc/nginx/ssl
-      - ./nginx/sites-available:/etc/nginx/sites-enabled
-    depends_on:
-      - couchdb
-    networks:
-      - medic-net
+  # nginx:
+  #   container_name: nginx
+  #   image: nginx:alpine
+  #   ports:
+  #     - "81:80"
+  #   volumes:
+  #     - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+  #     - ./nginx/logs/:/var/log/nginx
+  #     - ./nginx/ssl-keys:/etc/nginx/ssl
+  #     - ./nginx/sites-available:/etc/nginx/sites-enabled
+  #   depends_on:
+  #     - couchdb
+  #   networks:
+  #     - medic-net
 
   couchdb:
     container_name: couchdb-image
