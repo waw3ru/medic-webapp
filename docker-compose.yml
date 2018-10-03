@@ -5,7 +5,7 @@ services:
     build: .
     container_name: medic-webapp
     ports:
-      - "5989:5988"
+      - "5988:5988"
     networks:
       - medic-net
     volumes:
@@ -39,7 +39,7 @@ services:
     networks:
       - medic-net
     ports:
-      - "5985:5984"
+      - "5984:5984"
       - "4370:4369"
       - "9101:9100"
     env_file:
@@ -56,4 +56,3 @@ networks:
   medic-net:
     labels:
       com.medic-net.description: "docker containers compose internal network"
-      com.medic-net.organization: "Livinggoods"
