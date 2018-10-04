@@ -10,6 +10,4 @@ COPY . /srv/
 
 WORKDIR /srv/
 
-RUN npm i
-
 CMD ["npm", "run", "production"]
