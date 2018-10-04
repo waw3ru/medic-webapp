@@ -54,7 +54,7 @@ if [ ! -f .docker-setup-done ];
         export COUCH_PASS=$2
         export COUCH_NODE_NAME=couchdb@$3
         export NODE_ENV=$4
-        export COUCH_URL=http://$COUCH_USER:$COUCH_PASS@127.0.0.1:5985/medic
+        export COUCH_URL=http://$COUCH_USER:$COUCH_PASS@127.0.0.1:5984/medic
 
         printf "\nStarting docker-compose couchdb service...\n"
         docker-compose up -d --build couchdb
