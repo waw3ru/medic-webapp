@@ -8,6 +8,8 @@
 # COUCH_NODE_NAME: node name of couch on local host,
 #   e.g. couchdb@localhost
 #
+# "production": "concurrently --restart-after 20 --restart-tries 5 --names \"API, SENTINEL\" \"\" \"\"",
+#
 # Alternatively, these values can be set as normal environment variables.
 
 api: grunt dev-api

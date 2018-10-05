@@ -21,3 +21,14 @@ tests/results
 *.sublime-project
 *.sublime-workspace
 /.env
+nginx/logs
+couchdb/logs
+api/logs
+sentinel/logs
+nginx/ssl-keys/**/*
+!nginx/ssl-keys/.gitkeep
+couchdb/.env
+environments/**/*
+!environments/.gitkeep
+!environments/*.txt
+.docker-setup-done

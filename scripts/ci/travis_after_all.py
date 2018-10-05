@@ -65,7 +65,7 @@ def wait_others_to_finish():
         """
         snapshot = matrix_snapshot()
         if not snapshot:
-            return true, [];
+            return True, [];
         else:
             finished = [el.is_finished for el in snapshot if not el.is_leader]
             return reduce(lambda a, b: a and b, finished), [el.number for el in snapshot if
