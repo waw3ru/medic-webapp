@@ -24,7 +24,7 @@ describe('Submit Delivery Report', () => {
     //select name
     await deliveryReport.selectPatientName('jack');
     await genericForm.nextPageNative();
-    await helper.waitElementToBeVisible(element(by.css('[value="healthy"]')));
+    await helper.waitElementToBeVisibleNative(element(by.css('[value="healthy"]')));
     //Delivery info
     await deliveryReport.selectLiveBirthButton();
     await deliveryReport.selectFacilityButton();
@@ -37,7 +37,7 @@ describe('Submit Delivery Report', () => {
     expect(await deliveryReport.getDeliveryLocationSummaryText()).toBe('Facility');
     expect(await deliveryReport.getFollowUpMessage()).toBe(noteToCHW);
     //submit
-    await genericForm.submitNative();
+    await genericForm.submitReports();
     expect(await element(by.css('div.details')).isPresent()).toBeTruthy();
   });
 });

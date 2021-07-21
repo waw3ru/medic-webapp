@@ -30,7 +30,7 @@ const submit = function(e) {
   setState('loading');
   const url = document.getElementById('form').action;
   const payload = JSON.stringify({
-    user: document.getElementById('user').value.toLowerCase().trim(),
+    user: getUsername(),
     password: document.getElementById('password').value,
     redirect: getRedirectUrl(),
     locale: selectedLocale
@@ -52,7 +52,8 @@ const submit = function(e) {
 
 const requestTokenLogin = (retry = 20) => {
   const url = document.getElementById('tokenLogin').action;
-  request('POST', url, '', xmlhttp => {
+  const payload = JSON.stringify({ locale: selectedLocale });
+  request('POST', url, payload, xmlhttp => {
     let response = {};
     try {
       response = JSON.parse(xmlhttp.responseText);
@@ -152,9 +153,17 @@ const parseTranslations = function() {
   return JSON.parse(decodeURIComponent(raw));
 };
 
+const getUsername = function() {
+  return document.getElementById('user').value.toLowerCase().trim();
+};
+
 const getRedirectUrl = function() {
   const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get('redirect');
+  const usernameQueryParam = urlParams.get('username');
+  const usernameEntered = getUsername();
+  if (usernameQueryParam === usernameEntered) {
+    return urlParams.get('redirect');
+  }
 };
 
 const getUserCtx = function() {

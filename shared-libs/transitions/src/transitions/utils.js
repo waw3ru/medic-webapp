@@ -2,7 +2,11 @@ const db = require('../db');
 const messages = require('../lib/messages');
 const utils = require('../lib/utils');
 const idGenerator = require('../lib/ids').generator(db);
-const validation = require('../lib/validation');
+const config = require('../config');
+const validation = require('@medic/validation');
+const logger = require('../lib/logger');
+
+validation.init({ db, translate: utils.translate, settings: config.getAll(), logger });
 
 const findFirstMatchingMessage = (config, eventType) => {
   if (!config.messages || !config.messages.length) {
@@ -25,8 +29,8 @@ module.exports = {
       errorMessage = messages.getMessage(config, utils.getLocale(doc));
       message = config;
     } else {
-      errorMessage = `messages.generic.${errorKey}`;
-      message = { translation_key: errorMessage };
+      message = { translation_key: `messages.generic.${errorKey}` };
+      errorMessage = messages.getMessage(message, utils.getLocale(doc));
     }
     const recipient = config && config.recipient || 'from';
     // A "message" ends up being a doc.task, which is something that is sent to
@@ -88,6 +92,6 @@ module.exports = {
 
   validate: (config, doc) => {
     const validations = config && config.validations && config.validations.list;
-    return new Promise(resolve => validation.validate(doc, validations, resolve));
+    return validation.validate(doc, validations);
   },
 };

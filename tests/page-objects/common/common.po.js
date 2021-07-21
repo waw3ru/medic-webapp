@@ -9,7 +9,12 @@ const messagesTab = element(by.id('messages-tab'));
 const analyticsTab = element(by.id('analytics-tab'));
 const hamburgerMenu = element(by.id('header-dropdown-link'));
 const hamburgerMenuOptions = element.all(by.css('#header-dropdown>li:not(.hidden)'));
-const logoutButton = $('[ng-click=logout]');
+const logoutButton = $('.fa-power-off');
+
+//Log out warning modal
+const modal = element(by.css('div.modal-dialog'));
+const modlaBody = element(by.css('div.modal-body'));
+const yesButton = element(by.css('a.btn.submit.btn-danger'));
 
 // Configuration wizard
 const wizardTitle = element(by.css('#guided-setup .modal-header > h2'));
@@ -28,9 +33,17 @@ const modalFooter = element(by.css('.modal-footer'));
 const deleteButton = element(by.css('#delete-confirm')).element(by.css('.btn.submit'));
 const displayTime = element(by.css('[ui-sref="display.date-time"]'));
 const messagesList = element(by.id('message-list'));
+const snackBarContent = element(by.css('.snackbar-content'));
+const languagePreferenceHeading = element(by.css('#language-preference-heading'));
+const selectedPreferenceHeading = element(by.css('#language-preference-heading > h4:nth-child(1) > span:nth-child(3)'));
+const messagesLanguage = element(by.css('.locale a.selected span.rectangle'));
+const defaultLanguage=  element(by.css('.locale-outgoing a.selected span.rectangle'));
 
 module.exports = {
+  snackBarContent,
   messagesList,
+  messagesTab,
+  analyticsTab,
   calm: async () => {
     utils.deprecated('calm', 'calmNative');
     // const bootstrapperSelector = by.css('.bootstrap-layer');
@@ -54,19 +67,33 @@ module.exports = {
   },
 
   checkConfigurationWizard: async () => {
-    await openSubmenu('configuration wizard');
+    await openSubmenu('wizard');
     await helper.waitUntilReadyNative(wizardTitle);
     await helper.waitUntilTranslated(wizardTitle);
     const wizardTitleText = await helper.getTextFromElementNative(wizardTitle);
-    console.log('title text', wizardTitleText);
-    expect(wizardTitleText).toEqual('Configuration wizard');
+    expect(wizardTitleText.toLowerCase()).toContain('wizard');
     expect(await helper.getTextFromElementNative(defaultCountryCode)).toEqual('Canada (+1)');
-    expect(await finishBtn.getText()).toEqual('Finish');
+    const texts = ['setup.start','Finish'];
+    const displayed = await helper.getTextFromElementNative(finishBtn);
+    expect(texts).toContain(displayed);
     await skipSetup.click();
   },
 
+  getDefaultLanguages: async () => {
+    await module.exports.openMenuNative();
+    await openSubmenu(['configuration wizard','easy setup wizard ']);
+    await helper.waitUntilReadyNative(wizardTitle);
+    await helper.waitUntilTranslated(wizardTitle);
+    await helper.clickElementNative(languagePreferenceHeading);
+    const headingText = await helper.getTextFromElementNative(selectedPreferenceHeading);
+    const messageLang = await messagesLanguage.getAttribute('innerText');
+    const defaultLang = await defaultLanguage.getAttribute('innerText');
+    await utils.resetBrowserNative();
+    return  [headingText, messageLang, defaultLang];
+  },
+
   checkGuidedTour: async () => {
-    await openSubmenu('guided');
+    await openSubmenu('guided tour');
     expect(await tourBtns.count()).toEqual(4);
     await helper.clickElementNative(genericCancelBtn);
   },
@@ -93,9 +120,10 @@ module.exports = {
   },
 
   checkUserSettings: async () => {
-    await openSubmenu('user settings');
+    await openSubmenu(['user settings', 'edit.user.settings']);
     const optionNames = await helper.getTextFromElementNative(settings);
-    expect(optionNames).toEqual(['Update password', 'Edit user profile']);
+    expect(optionNames[0]).toContain('password');
+    expect(optionNames[1].toLowerCase()).toEqual('edit user profile');
   },
 
   goHome: () => {
@@ -203,10 +231,16 @@ module.exports = {
     return element(by.id(list)).isPresent();
   },
 
-  logout: () => {
-    hamburgerMenu.click();
-    helper.waitElementToBeVisible(logoutButton);
-    logoutButton.click();
+  logout: async () => {
+    await helper.clickElementNative(hamburgerMenu);
+    await helper.waitElementToBeVisibleNative(logoutButton);
+    await helper.clickElementNative(logoutButton);
+    await helper.waitUntilReadyNative(modal);
+    const warning = await helper.getTextFromElementNative(modlaBody);
+    await helper.clickElementNative(yesButton);
+    await helper.waitUntilReadyNative(element(by.css('form#form')));
+    return warning;
+
   },
 
   openMenu: () => {
